@@ -1,0 +1,36 @@
+<div class="navbar bg-base-100">
+  <div class="flex-1">
+    <a class="btn btn-ghost normal-case text-xl">BOOKHUB</a>
+  </div>
+  <div class="flex-none gap-2">
+    <div class="form-control">
+      <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto"   [(ngModel)]="searchText" />
+    </div>
+  </div>
+</div>
+
+<div class="grid grid-cols-4 gap-4 place-items-center px-10 ">
+  <div class="card w-96 bg-base-100 shadow-xl" *ngFor="let book of pagedBookList | filter:searchText">
+    <figure><img [src]="book.imageUrl" /></figure>
+    <div class="card-body">
+      <h2 class="card-title">
+        {{book.name}}
+      </h2>
+      <p>{{book.author}}</p>
+
+      <div class="card-actions justify-end">
+        <div class="badge badge-outline">Fashion</div>
+        <div class="badge badge-outline">
+          <button (click)="lendbook(book)">Lend Book</button>
+        </div>
+        <div class="badge badge-outline bg-green-400 text-black">Available</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="bottom bg-transparent w-[800px] mx-[400px]">
+  <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" [length]="bookList.length" (page)="onPageChange($event)"></mat-paginator>
+</div>
+

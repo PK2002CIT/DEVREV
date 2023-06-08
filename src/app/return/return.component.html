@@ -1,0 +1,32 @@
+<div class="navbar bg-base-100">
+  <div class="flex-1">
+    <a class="btn btn-ghost normal-case text-xl">BOOKHUB</a>
+  </div>
+  <div class="flex-none gap-2">
+    <div class="form-control">
+      <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+    </div>
+  </div>
+</div>
+
+
+<div class="grid grid-cols-4 gap-4 place-items-center px-10 pt-10" infinite-scroll>
+
+  <div class="card w-96 bg-base-100 shadow-xl" *ngFor="let book of lendBooksArray">
+    <figure><img [src]="book.imageUrl" /></figure>
+    <div class="card-body">
+      <h2 class="card-title">
+        {{book.name}}
+      </h2>
+      <p>{{book.author}}</p>
+
+      <div class="card-actions justify-end">
+        <div class="badge badge-outline">Fashion</div>
+        <div class="badge badge-outline">
+          <button (click)="returnBook(book)">Return Book</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
